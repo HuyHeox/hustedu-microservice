@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.hn;
+
+option java_multiple_files = true;
+
+message User {
+    string fullName = 1;
+    string username = 2;
+    string itemType = 3;
+}
+
+
+service UserService{
+    rpc getUser(User) returns(User){}
+
+    //server-streaming - asynchronous
+    //client-streaming - asynchronous
+    //bi-directional streaming -asynchronous
+}
