@@ -60,10 +60,24 @@
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:21-jre</image>
+                    </from>
+                    <to>
+                        <image>registry.hub.docker.com/huyngo1110/${project.artifactId}</image>
+                    </to>
+                </configuration>
+                <!-- mvn clean compile jib:build -->
             </plugin>
         </plugins>
     </build>

@@ -39,6 +39,42 @@ public final class UserServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.hn.User.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.hn.User> METHOD_GET_ALL_USER =
+      io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.hn.User>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "com.hn.UserService", "getAllUser"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.google.protobuf.Empty.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.hn.User.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.hn.User,
+      com.hn.User> METHOD_GET_SHORTEST_NAME_USER =
+      io.grpc.MethodDescriptor.<com.hn.User, com.hn.User>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "com.hn.UserService", "getShortestNameUser"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.hn.User.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.hn.User.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.hn.User,
+      com.hn.User> METHOD_UPDATE_USERNAME_BY_FULL_NAME =
+      io.grpc.MethodDescriptor.<com.hn.User, com.hn.User>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "com.hn.UserService", "updateUsernameByFullName"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.hn.User.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.hn.User.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -68,10 +104,47 @@ public final class UserServiceGrpc {
   public static abstract class UserServiceImplBase implements io.grpc.BindableService {
 
     /**
+     * <pre>
+     *unary - synchronous - ham goi dong bo
+     *client will send one request and server will response with one response
+     * </pre>
      */
     public void getUser(com.hn.User request,
         io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_GET_USER, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *server-streaming - asynchronous - bat dong bo
+     *client will send one request and server will response with stream of message to the client
+     * </pre>
+     */
+    public void getAllUser(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_ALL_USER, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *client-streaming - asynchronous
+     *client will send stream of message and server will response with one response
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.hn.User> getShortestNameUser(
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      return asyncUnimplementedStreamingCall(METHOD_GET_SHORTEST_NAME_USER, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *bi-directional streaming -asynchronous
+     *client will send stream of message and server will response with stream of message to the client
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.hn.User> updateUsernameByFullName(
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      return asyncUnimplementedStreamingCall(METHOD_UPDATE_USERNAME_BY_FULL_NAME, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -83,6 +156,27 @@ public final class UserServiceGrpc {
                 com.hn.User,
                 com.hn.User>(
                   this, METHODID_GET_USER)))
+          .addMethod(
+            METHOD_GET_ALL_USER,
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                com.hn.User>(
+                  this, METHODID_GET_ALL_USER)))
+          .addMethod(
+            METHOD_GET_SHORTEST_NAME_USER,
+            asyncClientStreamingCall(
+              new MethodHandlers<
+                com.hn.User,
+                com.hn.User>(
+                  this, METHODID_GET_SHORTEST_NAME_USER)))
+          .addMethod(
+            METHOD_UPDATE_USERNAME_BY_FULL_NAME,
+            asyncBidiStreamingCall(
+              new MethodHandlers<
+                com.hn.User,
+                com.hn.User>(
+                  this, METHODID_UPDATE_USERNAME_BY_FULL_NAME)))
           .build();
     }
   }
@@ -106,11 +200,51 @@ public final class UserServiceGrpc {
     }
 
     /**
+     * <pre>
+     *unary - synchronous - ham goi dong bo
+     *client will send one request and server will response with one response
+     * </pre>
      */
     public void getUser(com.hn.User request,
         io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_USER, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *server-streaming - asynchronous - bat dong bo
+     *client will send one request and server will response with stream of message to the client
+     * </pre>
+     */
+    public void getAllUser(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(METHOD_GET_ALL_USER, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *client-streaming - asynchronous
+     *client will send stream of message and server will response with one response
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.hn.User> getShortestNameUser(
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      return asyncClientStreamingCall(
+          getChannel().newCall(METHOD_GET_SHORTEST_NAME_USER, getCallOptions()), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *bi-directional streaming -asynchronous
+     *client will send stream of message and server will response with stream of message to the client
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<com.hn.User> updateUsernameByFullName(
+        io.grpc.stub.StreamObserver<com.hn.User> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(METHOD_UPDATE_USERNAME_BY_FULL_NAME, getCallOptions()), responseObserver);
     }
   }
 
@@ -133,10 +267,26 @@ public final class UserServiceGrpc {
     }
 
     /**
+     * <pre>
+     *unary - synchronous - ham goi dong bo
+     *client will send one request and server will response with one response
+     * </pre>
      */
     public com.hn.User getUser(com.hn.User request) {
       return blockingUnaryCall(
           getChannel(), METHOD_GET_USER, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *server-streaming - asynchronous - bat dong bo
+     *client will send one request and server will response with stream of message to the client
+     * </pre>
+     */
+    public java.util.Iterator<com.hn.User> getAllUser(
+        com.google.protobuf.Empty request) {
+      return blockingServerStreamingCall(
+          getChannel(), METHOD_GET_ALL_USER, getCallOptions(), request);
     }
   }
 
@@ -159,6 +309,10 @@ public final class UserServiceGrpc {
     }
 
     /**
+     * <pre>
+     *unary - synchronous - ham goi dong bo
+     *client will send one request and server will response with one response
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.hn.User> getUser(
         com.hn.User request) {
@@ -168,6 +322,9 @@ public final class UserServiceGrpc {
   }
 
   private static final int METHODID_GET_USER = 0;
+  private static final int METHODID_GET_ALL_USER = 1;
+  private static final int METHODID_GET_SHORTEST_NAME_USER = 2;
+  private static final int METHODID_UPDATE_USERNAME_BY_FULL_NAME = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -190,6 +347,10 @@ public final class UserServiceGrpc {
           serviceImpl.getUser((com.hn.User) request,
               (io.grpc.stub.StreamObserver<com.hn.User>) responseObserver);
           break;
+        case METHODID_GET_ALL_USER:
+          serviceImpl.getAllUser((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<com.hn.User>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -200,6 +361,12 @@ public final class UserServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_GET_SHORTEST_NAME_USER:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getShortestNameUser(
+              (io.grpc.stub.StreamObserver<com.hn.User>) responseObserver);
+        case METHODID_UPDATE_USERNAME_BY_FULL_NAME:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.updateUsernameByFullName(
+              (io.grpc.stub.StreamObserver<com.hn.User>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -224,6 +391,9 @@ public final class UserServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserServiceDescriptorSupplier())
               .addMethod(METHOD_GET_USER)
+              .addMethod(METHOD_GET_ALL_USER)
+              .addMethod(METHOD_GET_SHORTEST_NAME_USER)
+              .addMethod(METHOD_UPDATE_USERNAME_BY_FULL_NAME)
               .build();
         }
       }

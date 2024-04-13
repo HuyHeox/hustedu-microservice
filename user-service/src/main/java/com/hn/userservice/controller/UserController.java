@@ -23,8 +23,9 @@ public class UserController {
     public User register(@RequestBody User user){
         return userService.registerUser(user);
     }
+
     @GetMapping("/")
-    public User getUserByUserName(@RequestParam String username, @RequestHeader String loggedInUser){
+    public User getUserByUserName(@RequestParam String username, @RequestHeader(required = false) String loggedInUser){
         System.out.println("loggedInUser : " + loggedInUser);
         return userService.getUserByUsername(username);
     }
