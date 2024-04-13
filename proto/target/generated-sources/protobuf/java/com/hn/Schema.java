@@ -28,10 +28,15 @@ public final class Schema {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014schema.proto\022\006com.hn\"<\n\004User\022\020\n\010fullNa" +
-      "me\030\001 \001(\t\022\020\n\010username\030\002 \001(\t\022\020\n\010itemType\030\003" +
-      " \001(\t26\n\013UserService\022\'\n\007getUser\022\014.com.hn." +
-      "User\032\014.com.hn.User\"\000B\002P\001b\006proto3"
+      "\n\014schema.proto\022\006com.hn\032\033google/protobuf/" +
+      "empty.proto\"<\n\004User\022\020\n\010fullName\030\001 \001(\t\022\020\n" +
+      "\010username\030\002 \001(\t\022\020\n\010itemType\030\003 \001(\t2\343\001\n\013Us" +
+      "erService\022\'\n\007getUser\022\014.com.hn.User\032\014.com" +
+      ".hn.User\"\000\0226\n\ngetAllUser\022\026.google.protob" +
+      "uf.Empty\032\014.com.hn.User\"\0000\001\0225\n\023getShortes" +
+      "tNameUser\022\014.com.hn.User\032\014.com.hn.User\"\000(" +
+      "\001\022<\n\030updateUsernameByFullName\022\014.com.hn.U" +
+      "ser\032\014.com.hn.User\"\000(\0010\001B\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -44,6 +49,7 @@ public final class Schema {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
         }, assigner);
     internal_static_com_hn_User_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -51,6 +57,7 @@ public final class Schema {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_hn_User_descriptor,
         new java.lang.String[] { "FullName", "Username", "ItemType", });
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
