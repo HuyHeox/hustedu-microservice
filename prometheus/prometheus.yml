@@ -26,14 +26,17 @@ scrape_configs:
 
   - job_name: 'user_service'
     metrics_path: '/actuator/prometheus'
+    scheme: http
     static_configs:
-      - targets: ['localhost:57250']
+      - targets: ['host.docker.internal:8083']
         labels:
           application: 'User Service Application'
 
+
   - job_name: 'authentication_service'
     metrics_path: '/actuator/prometheus'
+    scheme: http
     static_configs:
-      - targets: [ 'authentication-service:8080' ]
+      - targets: ['host.docker.internal:8082']
         labels:
           application: 'Authentication Service Application'

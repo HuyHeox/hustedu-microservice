@@ -28,14 +28,17 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   prometheus:
-    image: prom/prometheus:v2.37.1
+    image: prom/prometheus:v2.51.1
     container_name: prometheus
+    network_mode: host
     restart: unless-stopped
     ports:
       - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-#    depends_on:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  #    depends_on:
 #      - user-service
 #      - authentication-service
 
